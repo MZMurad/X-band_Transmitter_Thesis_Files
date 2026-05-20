@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'MBT_44_'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Mini-Circuits", "MBT-44+" (!) = "", "MBT44", "Other", "139-MBT-44+", "https://www.mouser.co.uk/ProductDetail/Mini-Circuits/MBT-44%2b?qs=3pZoU%2F6IRTgNg5fQOAQ8QA%3D%3D", "MMIC BIAS TEE,50 10 to 40 GHz , 8L MCLP package ", "https://www.minicircuits.com/pdfs/MBT-44+.pdf", "0.95 mm"
+END_PART
+
+END.

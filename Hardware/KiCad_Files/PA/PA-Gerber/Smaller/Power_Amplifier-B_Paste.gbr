@@ -1,0 +1,25 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,8.0.4*%
+%TF.CreationDate,2025-12-21T10:28:18-08:00*%
+%TF.ProjectId,Power_Amplifier,506f7765-725f-4416-9d70-6c6966696572,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Paste,Bot*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 8.0.4) date 2025-12-21 10:28:18*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%ADD10R,5.003800X5.994400*%
+G04 APERTURE END LIST*
+D10*
+%TO.C,J8*%
+X147497800Y-70710544D03*
+X147492026Y-62708371D03*
+%TD*%
+%TO.C,J1*%
+X96551174Y-70718129D03*
+X96545400Y-62715956D03*
+%TD*%
+M02*

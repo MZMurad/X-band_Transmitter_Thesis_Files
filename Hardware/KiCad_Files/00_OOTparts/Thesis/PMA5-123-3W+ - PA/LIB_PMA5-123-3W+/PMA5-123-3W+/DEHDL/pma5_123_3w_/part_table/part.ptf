@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'PMA5_123_3W_'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Mini-Circuits", "PMA5-123-3W+" (!) = "", "QFN50P500X500X100-33N-D", "Quad Flat No-Lead", "", "", "Mini-Circuits SMT MMIC, High Power Amplifier, 8 to 12 GHz, 50ohm", "https://www.minicircuits.com/pdfs/PMA5-123-3W+.pdf", "1 mm"
+END_PART
+
+END.

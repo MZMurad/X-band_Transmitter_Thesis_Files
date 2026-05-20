@@ -1,0 +1,16 @@
+.MBT-44-plus- :1 ;MMIC BIAS TEE,50 10 to 40 GHz , 8L MCLP package 
+MBT44
+*STM IC
+*NGS
+*PLB 1="N/C_1" 2="RF" 3="N/C_2" 4="N/C_3" 5="N/C_4" 6="RF + DC" 7="N/C_5" 8="DC" 9="EP"
+*MXP 9
+*DFN MBT-44-plus-
+~!Mouser Part Number (139-MBT-44+)
+~!Link Mouser Price/Stock (https://www.mouser.co.uk/ProductDetail/Mini-Circuits/MBT-44%2b?qs=3pZoU%2F6IRTgNg5fQOAQ8QA%3D%3D)
+~!Manufacturer_Name (Mini-Circuits)
+~!Manufacturer_Part_Number (MBT-44+)
+~!Link Datasheet (https://www.minicircuits.com/pdfs/MBT-44+.pdf)
+~!Height (0.95mm)
+~!3D_Model (MBT-44+)
+MBT-44-plus-
+1.1!U 2.1!U 3.1!U 4.1!U 5.1!U 6.1!U 7.1!U 8.1!U 9.1!U 

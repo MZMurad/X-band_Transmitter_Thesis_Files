@@ -1,0 +1,8 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Thesis")(type "KiCad")(uri "C:/Users/munta/Documents/06_KiCad/00_OOTparts/Thesis/Schematic/Thesis.kicad_sym")(options "")(descr ""))
+  (lib (name "ADF4108BCPZ")(type "KiCad")(uri "C:/Users/munta/Documents/06_KiCad/00_OOTparts/Thesis/ADF4108BCPZ/ADF4108BCPZ_RL7/KiCADv6/2025-11-27_01-42-39.kicad_sym")(options "")(descr ""))
+  (lib (name "ADF5355BCPZ")(type "KiCad")(uri "C:/Users/munta/Documents/06_KiCad/00_OOTparts/Thesis/ADF5355BCPZ - PLL/ul_ADF5355BCPZ_Functional/KiCADv6/2025-11-28_01-36-24.kicad_sym")(options "")(descr ""))
+  (lib (name "MM8030_2610RJ3")(type "KiCad")(uri "C:/Users/munta/Documents/06_KiCad/00_OOTparts/Thesis/MM8030_2610RJ3 - Test Point/MM8030_2610RK0/KiCADv6/2025-11-29_00-14-45.kicad_sym")(options "")(descr ""))
+  (lib (name "32K243-40ML5")(type "KiCad")(uri "C:/Users/munta/Documents/06_KiCad/00_OOTparts/Thesis/32K243-40ML5 - Connector/32K243_40ML5/KiCADv6/2025-12-01_21-31-13.kicad_sym")(options "")(descr ""))
+)

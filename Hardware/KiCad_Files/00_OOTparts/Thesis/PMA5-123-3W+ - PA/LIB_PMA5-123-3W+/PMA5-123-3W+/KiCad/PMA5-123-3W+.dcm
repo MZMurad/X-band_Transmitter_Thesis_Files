@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP PMA5-123-3W+
+D Mini-Circuits SMT MMIC, High Power Amplifier, 8 to 12 GHz, 50ohm
+K
+F https://www.minicircuits.com/pdfs/PMA5-123-3W+.pdf
+$ENDCMP
+#
+#End Doc Library

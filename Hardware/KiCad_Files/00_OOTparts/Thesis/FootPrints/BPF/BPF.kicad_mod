@@ -1,0 +1,32 @@
+(footprint "MFBP-00146CSP3" (version 20211014) (generator pcbnew)
+  (layer "F.Cu")
+  (tedit 5A1B2C3D)
+  (descr "Marki Microwave MFBP-00146CSP3 - 3.5x3.5mm CSP3 BGA")
+  (tags "BGA CSP3")
+  (attr smd)
+  (fp_text reference "REF**" (at 0 -2.5) (layer "F.SilkS")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value "MFBP-00146CSP3" (at 0 2.5) (layer "F.Fab")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+
+  (fp_line (start -1.75 -1.75) (end 1.75 -1.75) (layer "F.SilkS") (width 0.12))
+  (fp_line (start 1.75 -1.75) (end 1.75 1.75) (layer "F.SilkS") (width 0.12))
+  (fp_line (start 1.75 1.75) (end -1.75 1.75) (layer "F.SilkS") (width 0.12))
+  (fp_line (start -1.75 1.75) (end -1.75 -1.75) (layer "F.SilkS") (width 0.12))
+
+  (fp_circle (center -1.5 -1.5) (end -1.3 -1.5) (layer "F.SilkS") (width 0.12)) ; Pin 1 marker
+
+  (pad "1" smd circle (at -1.0 -1.0) (size 0.3 0.3) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "2" smd circle (at 0 -1.0) (size 0.3 0.3) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "3" smd circle (at 1.0 -1.0) (size 0.3 0.3) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "4" smd circle (at -1.0 1.0) (size 0.3 0.3) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "5" smd circle (at 0 1.0) (size 0.3 0.3) (layers "F.Cu" "F.Paste" "F.Mask"))
+  (pad "6" smd circle (at 1.0 1.0) (size 0.3 0.3) (layers "F.Cu" "F.Paste" "F.Mask"))
+
+  (fp_line (start -2 -2) (end 2 -2) (layer "F.CrtYd") (width 0.05))
+  (fp_line (start 2 -2) (end 2 2) (layer "F.CrtYd") (width 0.05))
+  (fp_line (start 2 2) (end -2 2) (layer "F.CrtYd") (width 0.05))
+  (fp_line (start -2 2) (end -2 -2) (layer "F.CrtYd") (width 0.05))
+)

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MBT-44+
+D MMIC BIAS TEE,50 10 to 40 GHz , 8L MCLP package 
+K
+F https://www.minicircuits.com/pdfs/MBT-44+.pdf
+$ENDCMP
+#
+#End Doc Library

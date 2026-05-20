@@ -1,0 +1,148 @@
+;Proteus Design Interchange Format
+(PDIF
+ (vendor "SamacSys Limited")
+ (version 1 0)
+ (library
+  (part "MBT-44+"
+   (description "MMIC BIAS TEE,50 10 to 40 GHz , 8L MCLP package ")
+   (family "ANA")
+   (package "MBT44")
+   (attribute "Datasheet Link" "https://www.minicircuits.com/pdfs/MBT-44+.pdf")
+   (attribute "Geometry.Height" "0.95mm")
+   (attribute "Mouser Part Number" "139-MBT-44+")
+   (attribute "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Mini-Circuits/MBT-44%2b?qs=3pZoU%2F6IRTgNg5fQOAQ8QA%3D%3D")
+   (attribute "Manufacturer_Name" "Mini-Circuits")
+   (attribute "Manufacturer_Part_Number" "MBT-44+")
+   (gate
+    (symbol "MBT-44+")
+    (pin "N/C_1" 1 PS)
+    (pin "RF" 2 PS)
+    (pin "N/C_2" 3 PS)
+    (pin "N/C_3" 4 PS)
+    (pin "N/C_4" 5 PS)
+    (pin "RF_+_DC" 6 PS)
+    (pin "N/C_5" 7 PS)
+    (pin "DC" 8 PS)
+    (pin "EP" 9 PS)
+   )
+  )
+  (symbol "MBT-44+"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 200 100) (pt 1100 100) (pt 1100 -500) (pt 200 -500) (pt 200 100) (closed))
+   )
+   (terminal
+    (body (symbol "PIN") (pt 0 0) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -100) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -200) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -300) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 0 -400) (rot 0) (mir 0) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 0) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -100) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -200) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+   (terminal
+    (body (symbol "PIN") (pt 1300 -300) (rot 0) (mir X) (visible true))
+    (name (pt 230 0) (rot 0) (just MIDDLE LEFT) (visible true))
+    (number (pt 140 20) (rot 0) (just BOTTOM RIGHT) (visible true)))
+  )
+  (symbol "PIN"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 200 0))))
+  (symbol "PINSHORT"
+   (units THOU)
+   (origin (pt 0 0))
+   (graphic
+    (stroke 10)
+    (path (pt 0 0) (pt 100 0))))
+  (package "MBT44"
+   (units MM)
+   (layer TASM
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 1.25 1.25)
+      (pt -1.25 1.25)
+      (pt -1.25 -1.25)
+      (pt 1.25 -1.25)
+      (pt 1.25 1.25))))
+   (layer OCCA
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 2.505 -2.505)
+      (pt -2.505 -2.505)
+      (pt -2.505 2.505)
+      (pt 2.505 2.505)
+      (pt 2.505 -2.505))))
+   (layer TSLK
+    (graphic
+     (stroke 0.1)
+     (path
+      (closed true)
+      (pt 0.95 2.1)
+      (arc (pt 0.950 2.100) (pt 0.900 2.000) (pt 1.000 2.100) (start 180.0) (sweep 90.0))
+      (pt 0.95 2)
+      (arc (pt 0.950 2.000) (pt 0.900 2.000) (pt 1.000 2.100) (start 180.0) (sweep -90.0))
+      (pt 0.95 2.1))))
+   (leg 1 (pt 0.950 1.205) (padstack 0))
+   (leg 2 (pt 0.000 1.205) (padstack 0))
+   (leg 3 (pt -0.950 1.205) (padstack 0))
+   (leg 4 (pt -1.205 0.000) (padstack 4))
+   (leg 5 (pt -0.950 -1.205) (padstack 0))
+   (leg 6 (pt 0.000 -1.205) (padstack 0))
+   (leg 7 (pt 0.950 -1.205) (padstack 0))
+   (leg 8 (pt 1.205 0.000) (padstack 8))
+   (leg 9 (pt 0.000 0.005) (padstack 9))
+   (padstack 0
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.600 0 0 90.000))
+   )
+   (padstack 4
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.600 0 0 0.000))
+   )
+   (padstack 8
+    (plated false)
+    (pad (layer TCOP) (rectf 0.250 0.600 0 0 0.000))
+   )
+   (padstack 9
+    (plated false)
+    (pad (layer TCOP) (rectf 1.100 1.200 0 0 0.000))
+   )
+   (model "MBT-44+.stp"
+    (euler 0 0 0)
+    (offset 0 0 0)
+   )
+  )
+ )
+)
