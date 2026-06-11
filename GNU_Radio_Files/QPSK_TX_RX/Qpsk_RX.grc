@@ -54,14 +54,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 104.0]
+    coordinate: [376, 104.0]
     rotation: 0
     state: enabled
 - name: phase_bw
   id: variable
   parameters:
     comment: ''
-    value: 0.0628*2
+    value: 0.0628*3.5
   states:
     bus_sink: false
     bus_source: false
@@ -95,7 +95,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 1e6*5
+    value: 1e6*7
   states:
     bus_sink: false
     bus_source: false
@@ -107,7 +107,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '8'
+    value: '4'
   states:
     bus_sink: false
     bus_source: false
@@ -122,7 +122,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: replace_with_output_file_path
+    file: '[Insert your output file location]'
     type: byte
     unbuffered: 'True'
     vlen: '1'
@@ -130,7 +130,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 1232.0]
+    coordinate: [792, 1120.0]
     rotation: 0
     state: enabled
 - name: blocks_message_debug_0
@@ -145,9 +145,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [968, 1136.0]
+    coordinate: [1088, 1032.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_null_source_0
   id: blocks_null_source
   parameters:
@@ -164,7 +164,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [488, 96.0]
+    coordinate: [568, 104.0]
     rotation: 0
     state: enabled
 - name: blocks_repack_bits_bb_1
@@ -184,7 +184,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [240, 1144.0]
+    coordinate: [272, 1128.0]
     rotation: 0
     state: enabled
 - name: blocks_unpack_k_bits_bb_0
@@ -200,7 +200,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [624, 852.0]
+    coordinate: [656, 920.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_decoder_cb_0
@@ -216,7 +216,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [968, 708.0]
+    coordinate: [1000, 776.0]
     rotation: 0
     state: true
 - name: digital_correlate_access_code_xx_ts_0
@@ -235,7 +235,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [872, 840.0]
+    coordinate: [912, 904.0]
     rotation: 0
     state: enabled
 - name: digital_costas_loop_cc_0
@@ -253,7 +253,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [664, 672.0]
+    coordinate: [696, 744.0]
     rotation: 0
     state: enabled
 - name: digital_crc32_bb_1
@@ -271,7 +271,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 1248.0]
+    coordinate: [504, 1120.0]
     rotation: 0
     state: enabled
 - name: digital_diff_decoder_bb_0
@@ -288,7 +288,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [264, 844.0]
+    coordinate: [296, 912.0]
     rotation: 0
     state: enabled
 - name: digital_fll_band_edge_cc_0
@@ -303,12 +303,12 @@ blocks:
     rolloff: excess_bw
     samps_per_sym: sps
     type: cc
-    w: 3*math.pi/200
+    w: 4*math.pi/200
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 232.0]
+    coordinate: [456, 384.0]
     rotation: 0
     state: enabled
 - name: digital_map_bb_0
@@ -324,7 +324,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [472, 852.0]
+    coordinate: [504, 920.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0
@@ -351,7 +351,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [248, 604.0]
+    coordinate: [280, 676.0]
     rotation: 0
     state: true
 - name: filter_fft_rrc_filter_0
@@ -378,7 +378,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1104, 292.0]
+    coordinate: [704, 428.0]
     rotation: 0
     state: true
 - name: import_0
@@ -392,76 +392,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [360, 24.0]
-    rotation: 0
-    state: enabled
-- name: limesdr_sink_0
-  id: limesdr_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    allow_tcxo_dac: '0'
-    analog_bandw_ch0: 5e6
-    analog_bandw_ch1: 5e6
-    calibr_bandw_ch0: 2.5e6
-    calibr_bandw_ch1: 2.5e6
-    channel_mode: '0'
-    comment: ''
-    dacVal: '180'
-    digital_bandw_ch0: samp_rate
-    digital_bandw_ch1: samp_rate
-    filename: ''
-    gain_dB_ch0: '50'
-    gain_dB_ch1: '1'
-    length_tag_name: ''
-    nco_freq_ch0: '0'
-    nco_freq_ch1: '0'
-    oversample: '0'
-    pa_path_ch0: '255'
-    pa_path_ch1: '255'
-    rf_freq: 1e9
-    samp_rate: samp_rate
-    serial: 1DA14FB9626A6D
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [664, 32.0]
-    rotation: 0
-    state: enabled
-- name: limesdr_source_0
-  id: limesdr_source
-  parameters:
-    affinity: ''
-    alias: ''
-    allow_tcxo_dac: '0'
-    analog_bandw_ch0: 1.5e6
-    analog_bandw_ch1: 1.5e6
-    calibr_bandw_ch0: 2.5e6
-    calibr_bandw_ch1: 2.5e6
-    ch_align: 'False'
-    channel_mode: '0'
-    comment: ''
-    dacVal: '180'
-    digital_bandw_ch0: samp_rate
-    digital_bandw_ch1: samp_rate
-    filename: ''
-    gain_dB_ch0: '50'
-    gain_dB_ch1: '1'
-    lna_path_ch0: '255'
-    lna_path_ch1: '2'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    nco_freq_ch0: '0'
-    nco_freq_ch1: '0'
-    oversample: '0'
-    rf_freq: f0
-    samp_rate: samp_rate
-    serial: 1DA14FB9626A6D
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [272, 256.0]
     rotation: 0
     state: enabled
 - name: pdu_tagged_stream_to_pdu_0
@@ -478,7 +408,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 1136.0]
+    coordinate: [800, 1008.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0
@@ -510,7 +440,7 @@ blocks:
     color9: '"red"'
     comment: ''
     grid: 'True'
-    gui_hint: 2,0,10,10
+    gui_hint: 0,0,10,10
     label1: Synced Only
     label10: ''
     label2: Synced & Phase-Locked
@@ -570,7 +500,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [968, 612.0]
+    coordinate: [1000, 680.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -651,7 +581,49 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 448.0]
+    coordinate: [456, 520.0]
+    rotation: 0
+    state: enabled
+- name: soapy_limesdr_sink_0
+  id: soapy_limesdr_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: f0
+    comment: ''
+    dev_args: driver=lime,serial=1DA14FB9626A6D
+    freq_correction: '0'
+    gain: '20.0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [736, 96.0]
+    rotation: 0
+    state: enabled
+- name: soapy_limesdr_source_0
+  id: soapy_limesdr_source
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: f0
+    comment: ''
+    dev_args: driver=lime,serial=1DA14FB9626A6D
+    freq_correction: '0'
+    gain: '25'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 408.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_0
@@ -664,7 +636,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1368, 344.0]
+    coordinate: [944, 480.0]
     rotation: 0
     state: true
 - name: virtual_sink_1
@@ -677,7 +649,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1200, 708.0]
+    coordinate: [1232, 776.0]
     rotation: 0
     state: true
 - name: virtual_sink_4
@@ -690,7 +662,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1176, 848.0]
+    coordinate: [1208, 920.0]
     rotation: 0
     state: enabled
 - name: virtual_source_0
@@ -703,7 +675,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 660.0]
+    coordinate: [64, 728.0]
     rotation: 0
     state: true
 - name: virtual_source_0_0
@@ -716,7 +688,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 440.0]
+    coordinate: [128, 576.0]
     rotation: 0
     state: enabled
 - name: virtual_source_1
@@ -729,7 +701,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 852.0]
+    coordinate: [72, 920.0]
     rotation: 0
     state: true
 - name: virtual_source_3
@@ -742,12 +714,12 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [24, 1120.0]
+    coordinate: [72, 1136.0]
     rotation: 0
     state: enabled
 
 connections:
-- [blocks_null_source_0, '0', limesdr_sink_0, '0']
+- [blocks_null_source_0, '0', soapy_limesdr_sink_0, '0']
 - [blocks_repack_bits_bb_1, '0', digital_crc32_bb_1, '0']
 - [blocks_unpack_k_bits_bb_0, '0', digital_correlate_access_code_xx_ts_0, '0']
 - [digital_constellation_decoder_cb_0, '0', virtual_sink_1, '0']
@@ -762,9 +734,9 @@ connections:
 - [digital_symbol_sync_xx_0, '0', digital_costas_loop_cc_0, '0']
 - [digital_symbol_sync_xx_0, '0', qtgui_const_sink_x_0, '0']
 - [filter_fft_rrc_filter_0, '0', virtual_sink_0, '0']
-- [limesdr_source_0, '0', digital_fll_band_edge_cc_0, '0']
-- [limesdr_source_0, '0', qtgui_freq_sink_x_0, '0']
 - [pdu_tagged_stream_to_pdu_0, pdus, blocks_message_debug_0, print]
+- [soapy_limesdr_source_0, '0', digital_fll_band_edge_cc_0, '0']
+- [soapy_limesdr_source_0, '0', qtgui_freq_sink_x_0, '0']
 - [virtual_source_0, '0', digital_symbol_sync_xx_0, '0']
 - [virtual_source_0_0, '0', qtgui_freq_sink_x_0, '1']
 - [virtual_source_1, '0', digital_diff_decoder_bb_0, '0']

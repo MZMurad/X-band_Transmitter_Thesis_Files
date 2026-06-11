@@ -11,7 +11,6 @@
 
 from PyQt5 import Qt
 from gnuradio import qtgui
-from PyQt5 import QtCore
 from gnuradio import blocks
 import pmt
 from gnuradio import digital
@@ -24,7 +23,7 @@ from PyQt5 import Qt
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
-import limesdr
+from gnuradio import soapy
 import math
 import sip
 
@@ -65,26 +64,90 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.sps = sps = 8
-        self.samp_rate = samp_rate = 1e6*5
+        self.sps = sps = 4
+        self.samp_rate = samp_rate = 1e6*7
         self.qpsk = qpsk = digital.constellation_rect([-0.707-0.707j, 0.707-0.707j, +0.707+0.707j, -0.707+0.707j], [0, 1, 3, 2],
         4, 2, 2, 1, 1).base()
         self.preamble_size = preamble_size = 384*35
-        self.postamble_size = postamble_size = 64*35
+        self.postamble_size = postamble_size = 64*35*5
         self.phase_bw = phase_bw = 0.0628
-        self.payload_size = payload_size = 64*4
-        self.noise_volt = noise_volt = 0.2
+        self.payload_size = payload_size = 64
         self.hdr = hdr = digital.header_format_default(digital.packet_utils.default_access_code, 0)
-        self.freq_offset = freq_offset = 0.01
         self.f0 = f0 = 2.4e9
         self.excess_bw = excess_bw = 0.5
-        self.epsilon = epsilon = 1.0005
-        self.delay = delay = 52
 
         ##################################################
         # Blocks
         ##################################################
 
+        self.soapy_limesdr_source_0 = None
+        dev = 'driver=lime'
+        stream_args = ''
+        tune_args = ['']
+        settings = ['']
+
+        self.soapy_limesdr_source_0 = soapy.source(dev, "fc32", 1, 'driver=lime,serial=1DA15123B2837C',
+                                  stream_args, tune_args, settings)
+        self.soapy_limesdr_source_0.set_sample_rate(0, samp_rate)
+        self.soapy_limesdr_source_0.set_bandwidth(0, 0.0)
+        self.soapy_limesdr_source_0.set_frequency(0, f0)
+        self.soapy_limesdr_source_0.set_frequency_correction(0, 0)
+        self.soapy_limesdr_source_0.set_gain(0, min(max(20.0, -12.0), 61.0))
+        self.soapy_limesdr_sink_0 = None
+        dev = 'driver=lime'
+        stream_args = ''
+        tune_args = ['']
+        settings = ['']
+
+        self.soapy_limesdr_sink_0 = soapy.sink(dev, "fc32", 1, 'driver=lime,serial=1DA15123B2837C',
+                                  stream_args, tune_args, settings)
+        self.soapy_limesdr_sink_0.set_sample_rate(0, samp_rate)
+        self.soapy_limesdr_sink_0.set_bandwidth(0, 0.0)
+        self.soapy_limesdr_sink_0.set_frequency(0, f0)
+        self.soapy_limesdr_sink_0.set_frequency_correction(0, 0)
+        self.soapy_limesdr_sink_0.set_gain(0, min(max(40, -12.0), 64.0))
+        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
+            1024, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            0, #fc
+            samp_rate, #bw
+            'Output Spectrum', #name
+            1,
+            None # parent
+        )
+        self.qtgui_freq_sink_x_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0.set_y_axis((-140), 10)
+        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0.set_fft_window_normalized(False)
+
+
+
+        labels = ['', '', '', '', '',
+            '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.qtgui_const_sink_x_0 = qtgui.const_sink_c(
             1024, #size
             'Output Const', #name
@@ -126,69 +189,6 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
 
         self._qtgui_const_sink_x_0_win = sip.wrapinstance(self.qtgui_const_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_const_sink_x_0_win)
-        self._noise_volt_range = qtgui.Range(0, 1, 0.01, 0.2, 200)
-        self._noise_volt_win = qtgui.RangeWidget(self._noise_volt_range, self.set_noise_volt, "Channel: Noise Voltage", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_grid_layout.addWidget(self._noise_volt_win, 0, 0, 1, 10)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 10):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.limesdr_source_0 = limesdr.source('1DA15123B2837C', 0, '', False)
-
-
-        self.limesdr_source_0.set_sample_rate(samp_rate)
-
-
-        self.limesdr_source_0.set_center_freq(100e6, 0)
-
-        self.limesdr_source_0.set_bandwidth(1.5e6, 0)
-
-
-        self.limesdr_source_0.set_digital_filter(samp_rate, 0)
-
-
-        self.limesdr_source_0.set_gain(1, 0)
-
-
-        self.limesdr_source_0.set_antenna(255, 0)
-
-
-        self.limesdr_source_0.calibrate(2.5e6, 0)
-        self.limesdr_sink_0 = limesdr.sink('1DA15123B2837C', 0, '', '')
-
-
-        self.limesdr_sink_0.set_sample_rate(samp_rate)
-
-
-        self.limesdr_sink_0.set_center_freq(f0, 0)
-
-        self.limesdr_sink_0.set_bandwidth(5e6, 0)
-
-
-        self.limesdr_sink_0.set_digital_filter(samp_rate, 0)
-
-
-        self.limesdr_sink_0.set_gain(50, 0)
-
-
-        self.limesdr_sink_0.set_antenna(255, 0)
-
-
-        self.limesdr_sink_0.calibrate(2.5e6, 0)
-        self._freq_offset_range = qtgui.Range(-0.1, 0.1, 0.001, 0.01, 200)
-        self._freq_offset_win = qtgui.RangeWidget(self._freq_offset_range, self.set_freq_offset, "Channel: Frequency Offset", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_grid_layout.addWidget(self._freq_offset_win, 1, 0, 1, 10)
-        for r in range(1, 2):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(0, 10):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self._epsilon_range = qtgui.Range(0.999, 1.001, 0.0001, 1.0005, 200)
-        self._epsilon_win = qtgui.RangeWidget(self._epsilon_range, self.set_epsilon, "Channel: Timing Offset", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_grid_layout.addWidget(self._epsilon_win, 0, 10, 1, 10)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(10, 20):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self.digital_protocol_formatter_bb_0 = digital.protocol_formatter_bb(hdr, 'packet_len')
         self.digital_crc32_bb_0 = digital.crc32_bb(False, "packet_len", True)
         self.digital_constellation_modulator_0 = digital.generic_mod(
@@ -200,13 +200,6 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
             verbose=False,
             log=False,
             truncate=False)
-        self._delay_range = qtgui.Range(0, 1000, 1, 52, 200)
-        self._delay_win = qtgui.RangeWidget(self._delay_range, self.set_delay, "Delay", "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_grid_layout.addWidget(self._delay_win, 1, 10, 1, 10)
-        for r in range(1, 2):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(10, 20):
-            self.top_grid_layout.setColumnStretch(c, 1)
         self.blocks_vector_source_x_0_0 = blocks.vector_source_b([0xc0, 0xaf], True, 1, [])
         self.blocks_vector_source_x_0 = blocks.vector_source_b([0xc0, 0xaf], True, 1, [])
         self.blocks_tagged_stream_mux_0 = blocks.tagged_stream_mux(gr.sizeof_char*1, 'packet_len', 0)
@@ -214,8 +207,8 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
         self.blocks_stream_to_tagged_stream_0_0_0_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, preamble_size, "packet_len")
         self.blocks_stream_to_tagged_stream_0_0_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, payload_size, "packet_len")
         self.blocks_null_sink_0 = blocks.null_sink(gr.sizeof_gr_complex*1)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_cc(0.5)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/rango/Desktop/Output_SDR/Input_Rocket_SmallSize.jpg', False, 0, 0)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_cc(0.3)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/rango/Desktop/QPSK_TRIAL/QPSK_Thisone/images.jpeg', False, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
 
 
@@ -223,8 +216,9 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.blocks_file_source_0, 0), (self.blocks_stream_to_tagged_stream_0_0_0, 0))
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.limesdr_sink_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_const_sink_x_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.soapy_limesdr_sink_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0_0_0, 0), (self.digital_crc32_bb_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0_0_0_0, 0), (self.blocks_tagged_stream_mux_0, 0))
         self.connect((self.blocks_stream_to_tagged_stream_0_0_0_0_0, 0), (self.blocks_tagged_stream_mux_0, 3))
@@ -235,7 +229,7 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
         self.connect((self.digital_crc32_bb_0, 0), (self.blocks_tagged_stream_mux_0, 2))
         self.connect((self.digital_crc32_bb_0, 0), (self.digital_protocol_formatter_bb_0, 0))
         self.connect((self.digital_protocol_formatter_bb_0, 0), (self.blocks_tagged_stream_mux_0, 1))
-        self.connect((self.limesdr_source_0, 0), (self.blocks_null_sink_0, 0))
+        self.connect((self.soapy_limesdr_source_0, 0), (self.blocks_null_sink_0, 0))
 
 
     def closeEvent(self, event):
@@ -257,10 +251,9 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.limesdr_sink_0.set_digital_filter(self.samp_rate, 0)
-        self.limesdr_sink_0.set_digital_filter(self.samp_rate, 1)
-        self.limesdr_source_0.set_digital_filter(self.samp_rate, 0)
-        self.limesdr_source_0.set_digital_filter(self.samp_rate, 1)
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
+        self.soapy_limesdr_sink_0.set_sample_rate(0, self.samp_rate)
+        self.soapy_limesdr_source_0.set_sample_rate(0, self.samp_rate)
 
     def get_qpsk(self):
         return self.qpsk
@@ -298,48 +291,25 @@ class qpsk_modem(gr.top_block, Qt.QWidget):
         self.blocks_stream_to_tagged_stream_0_0_0.set_packet_len(self.payload_size)
         self.blocks_stream_to_tagged_stream_0_0_0.set_packet_len_pmt(self.payload_size)
 
-    def get_noise_volt(self):
-        return self.noise_volt
-
-    def set_noise_volt(self, noise_volt):
-        self.noise_volt = noise_volt
-
     def get_hdr(self):
         return self.hdr
 
     def set_hdr(self, hdr):
         self.hdr = hdr
 
-    def get_freq_offset(self):
-        return self.freq_offset
-
-    def set_freq_offset(self, freq_offset):
-        self.freq_offset = freq_offset
-
     def get_f0(self):
         return self.f0
 
     def set_f0(self, f0):
         self.f0 = f0
-        self.limesdr_sink_0.set_center_freq(self.f0, 0)
+        self.soapy_limesdr_sink_0.set_frequency(0, self.f0)
+        self.soapy_limesdr_source_0.set_frequency(0, self.f0)
 
     def get_excess_bw(self):
         return self.excess_bw
 
     def set_excess_bw(self, excess_bw):
         self.excess_bw = excess_bw
-
-    def get_epsilon(self):
-        return self.epsilon
-
-    def set_epsilon(self, epsilon):
-        self.epsilon = epsilon
-
-    def get_delay(self):
-        return self.delay
-
-    def set_delay(self, delay):
-        self.delay = delay
 
 
 
